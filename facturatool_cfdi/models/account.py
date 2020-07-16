@@ -12,12 +12,6 @@ import logging
 _logger = logging.getLogger(__name__)
 
 try:
-    from SOAPpy import WSDL
-except ImportError:  # pragma: no cover
-    _logger.debug('Cannot import SOAPpy')
-
-
-try:
     import zeep
 except ImportError:  # pragma: no cover
     _logger.debug('Cannot import zeep')
@@ -124,14 +118,6 @@ class AccountInvoice(models.Model):
             raise UserError(msg)
 
         wsdl = 'http://ws.facturatool.com/index.php?wsdl'
-        wsdl_client = False
-        WSDL.Config.strictNamespaces = 0
-        wsdl_client = WSDL.SOAPProxy(wsdl)
-        wsdl_client.soapproxy.config.dumpSOAPOut = 1
-        wsdl_client.soapproxy.config.dumpSOAPIn = 1
-        wsdl_client.soapproxy.config.debug = 1
-        wsdl_client.soapproxy.config.dict_encoding = 'UTF-8'
-
         client = zeep.Client(wsdl)
 
         for invoice in invoices:
@@ -220,7 +206,6 @@ class AccountInvoice(models.Model):
             #    params['EMail'] = invoice.partner_id.email
 
             _logger.debug('===== action_timbrar_cfdi params = %r',params)
-            #result = wsdl_client.crearCFDI(params=params)
             result = client.service.crearCFDI(params=params)
             _logger.debug('===== action_timbrar_cfdi result = %r',result)
             ws_res = json.loads(result)

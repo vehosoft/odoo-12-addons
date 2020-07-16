@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <menuitem id="account_cfdi_menu" name="Facturación Electrónica" parent="account.menu_finance_configuration" sequence="5" groups="account.group_account_manager"/> 
+        
+    </data>
+</odoo>

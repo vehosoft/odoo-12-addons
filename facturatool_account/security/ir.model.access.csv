@@ -1,0 +1,9 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_facturatool_account_account_user,facturatool.account.account.user,facturatool_account.model_facturatool_account,account.group_account_user,1,0,0,0
+access_facturatool_account_account_manager,facturatool.account.account.manager,facturatool_account.model_facturatool_account,account.group_account_manager,1,1,1,1
+access_facturatool_serie_account_user,facturatool.serie.account.user,facturatool_account.model_facturatool_serie,account.group_account_user,1,0,0,0
+access_facturatool_serie_account_manager,facturatool.serie.account.manager,facturatool_account.model_facturatool_serie,account.group_account_manager,1,1,1,1
+access_sat_cfdi_uso_account_user,sat.cfdi.uso.account.user,facturatool_account.model_sat_cfdi_uso,account.group_account_user,1,0,0,0
+access_sat_cfdi_uso_account_manager,sat.cfdi.uso.account.manager,facturatool_account.model_sat_cfdi_uso,account.group_account_manager,1,0,0,0
+access_sat_forma_pago_account_user,sat.forma.pago.account.user,facturatool_account.model_sat_forma_pago,account.group_account_user,1,0,0,0
+access_sat_forma_pago_account_manager,sat.forma.pago.account.manager,facturatool_account.model_sat_forma_pago,account.group_account_manager,1,0,0,0

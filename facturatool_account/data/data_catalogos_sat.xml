@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <record id="G01" model="sat.cfdi.uso">
+            <field name="code">G01</field>
+            <field name="name">Adquisicion de mercancias</field>
+        </record>
+        <record id="G03" model="sat.cfdi.uso">
+            <field name="code">G03</field>
+            <field name="name">Gastos en general</field>
+        </record>
+        <record id="I01" model="sat.cfdi.uso">
+            <field name="code">I01</field>
+            <field name="name">Construcciones</field>
+        </record>
+        <record id="I02" model="sat.cfdi.uso">
+            <field name="code">I02</field>
+            <field name="name">Mobilario y equipo de oficina por inversiones</field>
+        </record>
+        <record id="I03" model="sat.cfdi.uso">
+            <field name="code">I03</field>
+            <field name="name">Equipo de transporte</field>
+        </record>
+        <record id="I04" model="sat.cfdi.uso">
+            <field name="code">I04</field>
+            <field name="name">Equipo de computo y accesorios</field>
+        </record>
+        <record id="I05" model="sat.cfdi.uso">
+            <field name="code">I05</field>
+            <field name="name">Dados, troqueles, moldes, matrices y herramental</field>
+        </record>
+        <record id="I06" model="sat.cfdi.uso">
+            <field name="code">I06</field>
+            <field name="name">Comunicaciones telefonicas</field>
+        </record>
+        <record id="I07" model="sat.cfdi.uso">
+            <field name="code">I07</field>
+            <field name="name">Comunicaciones satelitales</field>
+        </record>
+        <record id="I08" model="sat.cfdi.uso">
+            <field name="code">I08</field>
+            <field name="name">Otra maquinaria y equipo</field>
+        </record>
+        <record id="D01" model="sat.cfdi.uso">
+            <field name="code">D01</field>
+            <field name="name">Honorarios medicos, dentales y gastos hospitalarios.</field>
+        </record>
+        <record id="D02" model="sat.cfdi.uso">
+            <field name="code">D02</field>
+            <field name="name">Gastos médicos por incapacidad o discapacidad.</field>
+        </record>
+        <record id="D03" model="sat.cfdi.uso">
+            <field name="code">D03</field>
+            <field name="name">Gastos funerales.</field>
+        </record>
+        <record id="D04" model="sat.cfdi.uso">
+            <field name="code">D04</field>
+            <field name="name">Donativos.</field>
+        </record>
+        <record id="P01" model="sat.cfdi.uso">
+            <field name="code">P01</field>
+            <field name="name">Por definir</field>
+        </record>
+
+
+        <record id="01" model="sat.forma.pago">
+            <field name="code">01</field>
+            <field name="name">Efectivo</field>
+        </record>
+        <record id="02" model="sat.forma.pago">
+            <field name="code">02</field>
+            <field name="name">Cheque nominativo</field>
+        </record>
+        <record id="03" model="sat.forma.pago">
+            <field name="code">03</field>
+            <field name="name">Transferencia electrónica de fondos</field>
+        </record>
+        <record id="04" model="sat.forma.pago">
+            <field name="code">04</field>
+            <field name="name">Tarjeta de crédito</field>
+        </record>
+        <record id="05" model="sat.forma.pago">
+            <field name="code">05</field>
+            <field name="name">Monedero electrónico</field>
+        </record>
+        <record id="06" model="sat.forma.pago">
+            <field name="code">06</field>
+            <field name="name">Dinero electrónico</field>
+        </record>
+        <record id="08" model="sat.forma.pago">
+            <field name="code">08</field>
+            <field name="name">Vales de despensa</field>
+        </record>
+        <record id="12" model="sat.forma.pago">
+            <field name="code">12</field>
+            <field name="name">Dación en pago</field>
+        </record>
+        <record id="13" model="sat.forma.pago">
+            <field name="code">13</field>
+            <field name="name">Pago por subrogación</field>
+        </record>
+        <record id="14" model="sat.forma.pago">
+            <field name="code">14</field>
+            <field name="name">Pago por consignación</field>
+        </record>
+        <record id="15" model="sat.forma.pago">
+            <field name="code">15</field>
+            <field name="name">Condonación</field>
+        </record>
+        <record id="17" model="sat.forma.pago">
+            <field name="code">17</field>
+            <field name="name">Compensación</field>
+        </record>
+        <record id="23" model="sat.forma.pago">
+            <field name="code">23</field>
+            <field name="name">Novación</field>
+        </record>
+        <record id="24" model="sat.forma.pago">
+            <field name="code">24</field>
+            <field name="name">Confusión</field>
+        </record>
+        <record id="25" model="sat.forma.pago">
+            <field name="code">25</field>
+            <field name="name">Remisión de deuda</field>
+        </record>
+        <record id="26" model="sat.forma.pago">
+            <field name="code">26</field>
+            <field name="name">Prescripción o caducidad</field>
+        </record>
+        <record id="27" model="sat.forma.pago">
+            <field name="code">27</field>
+            <field name="name">A satisfacción del acreedor</field>
+        </record>
+        <record id="28" model="sat.forma.pago">
+            <field name="code">28</field>
+            <field name="name">Tarjeta de débito</field>
+        </record>
+        <record id="29" model="sat.forma.pago">
+            <field name="code">29</field>
+            <field name="name">Tarjeta de servicios</field>
+        </record>
+        <record id="30" model="sat.forma.pago">
+            <field name="code">30</field>
+            <field name="name">Aplicación de anticipos</field>
+        </record>
+        <record id="31" model="sat.forma.pago">
+            <field name="code">31</field>
+            <field name="name">Intermediario pagos</field>
+        </record>
+        <record id="99" model="sat.forma.pago">
+            <field name="code">99</field>
+            <field name="name">Por definir</field>
+        </record>
+    </data>
+</odoo>

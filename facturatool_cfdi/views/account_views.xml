@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="view_tax_cfdi_form">
+            <field name="name">account.tax.cfdi.form</field>
+            <field name="model">account.tax</field>
+            <field name="inherit_id" ref="account.view_tax_form" />
+            <field name="priority" eval="14"/>
+            <field name="arch" type="xml">
+                <xpath expr="//group" position="inside">
+                    <group>
+                        <field name="type_tax_sat"/>
+                    </group>
+                    <group>
+                        <field name="tipo_factor_sat"/>
+                    </group>
+                    <group>
+                        <field name="clave_sat"/>
+                    </group>
+                </xpath>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="view_account_invoice_cfdi_tree">
+            <field name="name">account.invoice.cfdi.tree</field>
+            <field name="model">account.invoice</field>
+            <field name="inherit_id" ref="account.invoice_tree" />
+            <field name="arch" type="xml">
+                <field name="number" position="after">
+                  <field name="cfdi_state"/>
+                  <field name="cfdi_serie"/>
+                  <field name="cfdi_folio"/>
+                </field>
+                <field name="user_id" position="replace">
+                  <field name="user_id" invisible="1"/>
+                </field>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="view_account_invoice_cfdi_form">
+            <field name="name">account.invoice.cfdi.form</field>
+            <field name="model">account.invoice</field>
+            <field name="inherit_id" ref="account.invoice_form" />
+            <field name="arch" type="xml">
+                <field name="state" position="before">
+                  <button name="action_timbrar_cfdi" type="object" string="Timbrar CFDI"
+                    attrs="{'invisible':['|','|','|',('type','!=','out_invoice'),('cfdi_state', '!=', 'draft'),('state','=','draft'),('state','=','cancel')]}"
+                    class="oe_highlight" groups="account.group_account_invoice" confirm="Realmente desea timbrar la Factura?  .. Servicio de timbrado FacturaTool, costo: 1 timbre"/>
+                </field>
+                <field name="date_due" position="replace">
+                </field>
+                <field name="user_id" position="replace">
+                </field>
+                <field name="partner_id" position="after">
+                  <field name="cfdi_uso" attrs="{'readonly':[('cfdi_state','!=','draft')],'required':[('type','=','out_invoice')],'invisible':[('type','!=','out_invoice')]}"/>
+                </field>
+                <field name="payment_term_id" position="after">
+                  <field name="date_due" attrs="{'readonly': ['|',('payment_term_id','!=',False), ('state', 'in', ['open', 'in_payment', 'paid'])]}" force_save="1"/>
+                  <field name="user_id" groups="base.group_user"/>
+                </field>
+                <field name="date_invoice" position="after">
+                  <field name="cfdi_hora" widget="float_time" attrs="{'readonly':[('cfdi_state','!=','draft')],'required':[('type','=','out_invoice')],'invisible':[('type','!=','out_invoice')]}"/>
+                  <field name="cfdi_state" attrs="{'readonly':[('type','=','out_invoice')],'invisible':[('type','!=','out_invoice')]}"/>
+                  <field name="cfdi_serie" attrs="{'readonly':[('cfdi_state','!=','draft')],'required':[('type','=','out_invoice')],'invisible':[('type','!=','out_invoice')]}"/>
+          				<field name="cfdi_folio" attrs="{'invisible':['|',('type','!=','out_invoice'),('cfdi_state','=','draft')],'readonly':[('type','=','out_invoice')]}"/>
+                  <field name="cfdi_metodo_pago" attrs="{'readonly':[('cfdi_state','!=','draft')],'required':[('type','=','out_invoice')],'invisible':[('type','!=','out_invoice')]}"/>
+          				<field name="cfdi_forma_pago" attrs="{'readonly':['|',('cfdi_state','!=','draft'),('cfdi_metodo_pago','=','PPD')],'required':[('type','=','out_invoice')],'invisible':[('type','!=','out_invoice')]}"/>
+                  <field name="cfdi_uuid" attrs="{'invisible':['|',('type','!=','out_invoice'),('cfdi_state','=','draft')],'readonly':[('type','=','out_invoice')]}"/>
+                </field>
+                <xpath expr="//field[@name='invoice_line_ids']/tree/field[@name='name']" position="after">
+          			    <field name="clave_sat"/>
+          			    <field name="number_ident"/>
+          			</xpath>
+            </field>
+        </record>
+
+    </data>
+</odoo>

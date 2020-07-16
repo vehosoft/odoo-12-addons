@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="view_facturatool_account_form" model="ir.ui.view">
+            <field name="name">facturatool.account.form</field>
+            <field name="model">facturatool.account</field>
+            <field name="arch" type="xml">
+                <form string="Cuenta FacturaTool">
+                    <group string="Credenciales de acceso" colspan="4">
+                        <field name="rfc"/>
+                        <field name="username"/>
+                        <field name="password" password="True"/>
+                        <button name="test_facturatool_connection" type="object" string="Validar Acceso" icon="fa-key"/>
+                    </group>
+                </form>
+            </field>
+        </record>
+        
+        <record id="view_facturatool_account_tree" model="ir.ui.view">
+            <field name="name">facturatool.account.tree</field>
+            <field name="model">facturatool.account</field>
+            <field name="arch" type="xml">
+                <tree string="Cuenta FacturaTool">
+                    <field name="rfc"/>
+                    <field name="validate"/>
+                </tree>
+            </field>
+        </record>
+        
+        <record id="view_facturatool_account_search" model="ir.ui.view">
+            <field name="name">facturatool.account.search.view</field>
+            <field name="model">facturatool.account</field>
+            <field name="arch" type="xml">
+                <search string="Cuenta FacturaTool">
+                    <field name="rfc"/>
+                    <filter string="Validada" name="valid" domain="[('validate', '=', True)]" />
+                </search>
+            </field>
+        </record>
+        
+        <record id="action_facturatool_account" model="ir.actions.act_window">
+            <field name="name">Cuenta FacturaTool</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">facturatool.account</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="search_view_id" ref="view_facturatool_account_search" />
+        </record>
+    
+        <menuitem
+            id="menu_facturatool_account"
+            name="Cuenta FacturaTool"
+            parent="account_cfdi_menu"
+            sequence="1"
+            action="action_facturatool_account"
+            groups="account.group_account_manager"/>
+        
+        
+        <record id="view_facturatool_serie_form" model="ir.ui.view">
+            <field name="name">facturatool.serie.form</field>
+            <field name="model">facturatool.serie</field>
+            <field name="arch" type="xml">
+                <form string="Serie">
+                    <group string="Serie" colspan="4">
+                        <field name="name"/>
+                        <field name="factura"/>
+                        <field name="pago"/>
+                        <field name="nomina"/>
+                        
+                    </group>
+                </form>
+            </field>
+        </record>
+        
+        <record id="view_facturatool_serie_tree" model="ir.ui.view">
+            <field name="name">facturatool.serie.tree</field>
+            <field name="model">facturatool.serie</field>
+            <field name="arch" type="xml">
+                <tree string="Series">
+                    <field name="name"/>
+                    <field name="factura"/>
+                    <field name="pago"/>
+                    <field name="nomina"/>
+                </tree>
+            </field>
+        </record>
+        
+        <record id="view_facturatool_serie_search" model="ir.ui.view">
+            <field name="name">facturatool.serie.search.view</field>
+            <field name="model">facturatool.serie</field>
+            <field name="arch" type="xml">
+                <search string="Series">
+                    <field name="name"/>
+                    <filter string="Facturas" name="facturas" domain="[('factura', '=', True)]" />
+                    <filter string="Complemento de Pago" name="pagos" domain="[('pago', '=', True)]" />
+                    <filter string="Nominas" name="nominas" domain="[('nomina', '=', True)]" />
+                </search>
+            </field>
+        </record>
+        
+        <record id="action_facturatool_serie" model="ir.actions.act_window">
+            <field name="name">Series</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">facturatool.serie</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="search_view_id" ref="view_facturatool_serie_search" />
+        </record>
+    
+        <menuitem
+            id="menu_facturatool_serie"
+            name="Series"
+            parent="account_cfdi_menu"
+            sequence="2"
+            action="action_facturatool_serie"
+            groups="account.group_account_manager"/>
+        
+        <record id="view_sat_cfdi_uso_tree" model="ir.ui.view">
+            <field name="name">sat.cfdi.uso.tree</field>
+            <field name="model">sat.cfdi.uso</field>
+            <field name="arch" type="xml">
+                <tree string="Usos del CFDI">
+                    <field name="code"/>
+                    <field name="name"/>
+                </tree>
+            </field>
+        </record>
+        
+        <record id="view_sat_cfdi_uso_search" model="ir.ui.view">
+            <field name="name">sat.cfdi.uso.search.view</field>
+            <field name="model">sat.cfdi.uso</field>
+            <field name="arch" type="xml">
+                <search string="Uso del CFDI">
+                    <field name="name"/>
+                    <field name="code"/>
+                </search>
+            </field>
+        </record>
+
+    </data>
+</odoo>

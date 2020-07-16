@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+      <!-- Public api: layout to t-call from reports -->
+
+      <template id="external_layout_standard" inherit_id="web.external_layout_standard">
+          <xpath expr="//div[@class='header']" position="replace">
+            <div class="header">
+                <div class="row">
+                    <div class="col-3 mb4 mt4" style="margin-top:10px;">
+                        <img t-if="company.logo" t-att-src="image_data_uri(company.logo)" style="max-height: 45px;" alt="Logo"/>
+                    </div>
+                    <div class="col-6 mt4" style="margin-top:10px;">
+                        <div t-field="company.name" style="font-size: 18px; font-weight: bold;"/>
+                        <div style="font-size: 18px;">RFC: <span t-field="company.vat"/></div>
+                        <div style="font-size: 15px;">
+                            <span t-field="company.street"/>,
+                            <span t-field="company.street2"/>
+                        </div>
+                        <div style="font-size: 15px;">
+                            <span t-field="company.city"/>, <span t-field="company.state_id.code"/>, <span t-field="company.country_id.name"/>, C.P.<span t-field="company.zip"/>
+                        </div>
+                        <div style="font-size: 12px;"> Regimen Fiscal: <span t-field="company.company_registry"/> </div>
+                    </div>
+                    <div class="col-3 text-center" style="margin-top:10px;font-size: 15px;">
+                        <t t-if="'type' in o.fields_get() and 'state' in o.fields_get() and 'cfdi_state' in o.fields_get()">
+                            <div style="font-weight: bold; background-color: #cecece;" t-if="o.type == 'out_invoice' and o.state == 'draft'">Nota de Venta borrador</div>
+                            <div style="font-weight: bold; background-color: #cecece;" t-if="o.type == 'out_invoice' and (o.state == 'open' or o.state == 'paid') and o.cfdi_state == 'draft'">Nota de Venta</div>
+                            <div style="font-weight: bold; background-color: #cecece;" t-if="o.type == 'out_invoice' and o.state == 'cancel' and o.cfdi_state == 'draft'">Nota de Venta cancelada</div>
+                            <div style="font-weight: bold; background-color: #cecece;" t-if="o.type == 'out_invoice' and (o.state == 'open' or o.state == 'paid') and (o.cfdi_state == 'done')">FACTURA</div>
+                            <div style="font-weight: bold; background-color: #cecece;;" t-if="o.type == 'out_invoice' and o.state == 'cancel' and o.cfdi_state == 'cancel'">Factura cancelada</div>
+                            <div t-if="o.type == 'out_invoice' and (o.cfdi_state == 'done' or o.cfdi_state == 'cancel')">
+                                <span t-field="o.cfdi_serie"/> <span t-field="o.cfdi_folio"/>
+                            </div>
+                            <div t-if="o.type == 'out_invoice' and (o.state == 'draft' or o.state == 'open' or o.state == 'paid') and o.cfdi_state == 'draft'"><span t-field="o.number"/></div>
+                            <div style="font-weight: bold; background-color: #cecece;" t-if="o.type == 'out_invoice' and (o.state == 'open' or o.state == 'paid') and (o.cfdi_state == 'done' or o.cfdi_state == 'cancel')">TipoDeComprobante</div>
+                            <div t-if="o.type == 'out_invoice' and (o.cfdi_state == 'done' or o.cfdi_state == 'cancel')">
+                                Ingreso
+                            </div>
+                            <div style="font-weight: bold; background-color: #cecece;" t-if="o.type == 'out_invoice' and (o.state == 'open' or o.state == 'paid') and (o.cfdi_state == 'done' or o.cfdi_state == 'cancel')">F. Emision</div>
+                            <div t-if="o.type == 'out_invoice' and (o.cfdi_state == 'done' or o.cfdi_state == 'cancel')">
+                                <span t-field="o.date_invoice"/> <span t-field="o.cfdi_hora_str"/>
+                            </div>
+
+                        </t>
+                    </div>
+                </div>
+            </div>
+          </xpath>
+
+      </template>
+
+    </data>
+</odoo>

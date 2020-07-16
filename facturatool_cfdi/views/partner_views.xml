@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="view_partner_cfdi_form">
+            <field name="name">res.partner.form.cfdi</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_partner_form" />
+            <field name="priority" eval="14"/>
+            <field name="groups_id" eval="[(4, ref('account.group_account_invoice'))]"/>
+            <field name="arch" type="xml">
+                <field name="name" position="after">
+                    <field name="razon_social" placeholder="Razón Social" attrs="{'required': [('is_company','=', True)],'invisible': [('is_company','=', False)]}"/>
+                </field>
+            </field>
+        </record>
+        <record model="ir.ui.view" id="view_partner_cfdi_uso_form">
+            <field name="name">res.partner.form.cfdi_uso</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="account.view_partner_property_form" />
+            <field name="priority" eval="14"/>
+            <field name="groups_id" eval="[(4, ref('account.group_account_invoice'))]"/>
+            <field name="arch" type="xml">
+                <xpath expr="//page[@name='accounting']/group" position="inside">
+                    <group string="Facturación Electrónica" name="cfdi" priority="5">
+                        <field name="cfdi_uso"/>
+                    </group>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

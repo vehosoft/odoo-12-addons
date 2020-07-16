@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_sat_product_clave_account_user,sat.product.clave.account.user,facturatool_cfdi.model_sat_product_clave,account.group_account_user,1,1,1,0
+access_sat_product_clave_account_manager,sat.product.clave.account.manager,facturatool_cfdi.model_sat_product_clave,account.group_account_manager,1,1,1,1

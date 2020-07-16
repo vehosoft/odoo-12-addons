@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="product_template_cfdi_form_view">
+            <field name="name">product.template.cfdi.form</field>
+            <field name="model">product.template</field>
+            <field name="inherit_id" ref="product.product_template_form_view" />
+            <field name="priority" eval="14"/>
+            <field name="arch" type="xml">
+                <xpath expr="//group[@name='pricelists']" position="after">
+                    <group name="cfdi" string="Facturación Electrónica">
+                        <group>
+                            <field name="clave_sat"/>
+                            <field name="number_ident"/>
+                        </group>
+                    </group>
+                </xpath>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="product_uom_cfdi_form_view">
+            <field name="name">uom.uom.cfdi.form</field>
+            <field name="model">uom.uom</field>
+            <field name="inherit_id" ref="uom.product_uom_form_view" />
+            <field name="priority" eval="14"/>
+            <field name="arch" type="xml">
+                <xpath expr="//group" position="inside">
+                    <group string="Facturación Electrónica">
+                        <field name="clave_sat"/>
+                    </group>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="view_sat_product_clave_form" model="ir.ui.view">
+            <field name="name">sat.product.clave.form</field>
+            <field name="model">sat.product.clave</field>
+            <field name="arch" type="xml">
+                <form string="Clave SAT de Producto">
+                    <group string="Clave SAT de Producto" colspan="4">
+                        <field name="code"/>
+                        <field name="name"/>
+                    </group>
+                </form>
+            </field>
+        </record>
+
+        <record id="view_sat_product_clave_tree" model="ir.ui.view">
+            <field name="name">sat.product.clave.tree</field>
+            <field name="model">sat.product.clave</field>
+            <field name="arch" type="xml">
+                <tree string="Claves SAT de Producto">
+                    <field name="code"/>
+                    <field name="name"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_sat_product_clave_search" model="ir.ui.view">
+            <field name="name">sat.product.clave.search.view</field>
+            <field name="model">sat.product.clave</field>
+            <field name="arch" type="xml">
+                <search string="Claves SAT de Producto">
+                    <field name="name"/>
+                    <field name="code"/>
+                </search>
+            </field>
+        </record>
+
+        <record id="action_sat_product_clave" model="ir.actions.act_window">
+            <field name="name">Claves SAT de Producto</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">sat.product.clave</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="search_view_id" ref="view_sat_product_clave_search" />
+        </record>
+
+        <menuitem
+            id="menu_sat_product_clave"
+            name="Claves SAT de Producto"
+            parent="account.menu_finance_receivables"
+            sequence="150"
+            action="action_sat_product_clave"/>
+
+    </data>
+</odoo>

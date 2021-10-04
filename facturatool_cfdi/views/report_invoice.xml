@@ -157,6 +157,13 @@
                           <p t-if="o.cfdi_forma_pago" name="note">
                               Forma de Pago: <span t-field="o.cfdi_forma_pago.code"/> <span t-field="o.cfdi_forma_pago.name"/>
                           </p>
+                          <p name="moneda">
+                              Moneda: <span t-field="o.cfdi_moneda"/> 
+                              <span t-if="o.cfdi_moneda != 'MXN'">
+                                Tipo de Cambio <span t-field="o.cfdi_tipo_cambio"/>
+                            </span>
+                          </p>
+                          
                           <p t-if="o.payment_term_id" name="payment_term">
                               <span t-field="o.payment_term_id.note"/>
                           </p>

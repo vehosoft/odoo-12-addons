@@ -65,6 +65,8 @@ class AccountInvoice(models.Model):
 	cfdi_uuid = fields.Char(string='UUID', size=120, copy=False, track_visibility='onchange')
 	cfdi_metodo_pago = fields.Selection([('PUE', 'Pago en una sola exhibicion'), ('PPD', 'Pago en parcialidades o diferido')], string='Metodo de Pago', default='PUE')
 	cfdi_forma_pago = fields.Many2one('sat.forma.pago', string="Forma de Pago")
+	cfdi_moneda = fields.Char(related='currency_id.name', store=True, readonly=True, copy=False)
+	cfdi_tipo_cambio = fields.Float(string='Tipo de Cambio',default=1.00)
 	cfdi_fecha_timbrado = fields.Datetime(string='Fecha de timbrado', copy=False, track_visibility='onchange')
 	cfdi_xml = fields.Text('XML', copy=False)
 	cfdi_acuse_emision = fields.Text('Acuse de Emision', copy=False)
@@ -191,7 +193,8 @@ class AccountInvoice(models.Model):
 				'FormaPago': invoice.cfdi_forma_pago.code,
 				'MetodoPago': invoice.cfdi_metodo_pago,
 				#'TipoDeComprobante': 'I',
-				'Moneda': 'MXN',#factura.currency_id.name, hasta que se implemente timbrado para monedas distintas a MXN
+				#'Moneda': 'MXN',#factura.currency_id.name, hasta que se implemente timbrado para monedas distintas a MXN
+				'Moneda': invoice.cfdi_moneda,
 				'LugarExpedicion': invoice.company_id.zip,
 				'Receptor': receptor,
 				'Conceptos': conceptos,
@@ -200,6 +203,9 @@ class AccountInvoice(models.Model):
 				'IdExterno': invoice.number,
 				#'Redondeo': 'imp',
 			}
+			if invoice.cfdi_moneda != 'MXN':
+				params['TipoCambio'] = invoice.cfdi_tipo_cambio
+
 			if len(taxes) > 0:
 				params['Impuestos'] =  taxes
 			if invoice.payment_term_id:

@@ -67,6 +67,10 @@
           				<field name="cfdi_forma_pago" attrs="{'readonly':['|',('cfdi_state','!=','draft'),('cfdi_metodo_pago','=','PPD')],'required':[('type','=','out_invoice')],'invisible':[('type','!=','out_invoice')]}"/>
                   <field name="cfdi_uuid" attrs="{'invisible':['|',('type','!=','out_invoice'),('cfdi_state','=','draft')],'readonly':[('type','=','out_invoice')]}"/>
                 </field>
+                <label for="currency_id" position="before">
+                  <field name="cfdi_moneda" invisible="1"/>
+                  <field name="cfdi_tipo_cambio" attrs="{'readonly':[('cfdi_state','!=','draft')],'required':[('type','=','out_invoice'),('cfdi_moneda','!=','MXN')],'invisible':['|',('type','!=','out_invoice'),('cfdi_moneda','=','MXN')]}"/>
+                </label>
                 <xpath expr="//field[@name='invoice_line_ids']/tree/field[@name='name']" position="after">
           			    <field name="clave_sat"/>
           			    <field name="number_ident"/>
